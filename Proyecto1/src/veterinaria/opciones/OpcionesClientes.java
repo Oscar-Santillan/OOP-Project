@@ -1,105 +1,153 @@
 package veterinaria.opciones;
 
-import java.util.HashMap;            // Importaciones a Hashmap y a la entrada de datos del usuario.
+import java.util.HashMap;
 import java.util.Scanner;
 
-import veterinaria.Cliente;          
-import veterinaria.Direccion;        
+import veterinaria.Cliente;
+import veterinaria.Direccion;
 import veterinaria.Utilerias;
 import veterinaria.menus.Menus;
 
-public class OpcionesClientes {
+public class OpcionesClientes 
+{
 
     public static void ejecutar(HashMap<Integer, Cliente> clientes)
     {
         Scanner entrada = new Scanner(System.in);
         int opcion;
 
-        do{
+        do
+        {
             Menus.mostrarMenuClientes();
             opcion = Utilerias.leerEntero(entrada);
 
-            switch (opcion)
-            {
+            switch (opcion){
                 //Registrar cliente
-                case 1 -> 
-                {
+                case 1 -> {
                     registrarCliente(clientes, entrada);
                 }
 
                 //Consultar datos del cliente
-                case 2 -> 
-                {
+                case 2 -> {
                     consultarDatos(clientes, entrada);
                 }
 
                 //Regresar
-                case 3 -> 
-                {
+                case 3 -> {
                     System.out.println("Regresando...");
                 }
 
-                default -> 
-                {
+                default -> {
                     System.out.println("Ingresa una opción válida...");
                 }
-
             }
 
         }while(opcion != 3);
-
     }
 
     public static void registrarCliente(HashMap<Integer, Cliente> clientes, Scanner entrada)
     {
 
-        System.out.println("---Registrar cliente---");
+        System.out.println("=====Registrar cliente=====");
 
-        System.out.print("Numero de cliente: ");
-        int numCliente = Utilerias.leerEntero(entrada);
+        // El numero de cliente se asigna automaticamente
+        int numCliente = clientes.size() + 1;
 
-        if(clientes.containsKey(numCliente))
-        {
-            System.out.println("Ya existe un cliente con ese numero.");
-            return;
-        }
+        System.out.println("Numero de cliente asignado: " + numCliente);
 
+        // Nombre
         System.out.print("Nombre: ");
         String nombre = entrada.nextLine();
 
+        while(nombre.isBlank() || !contieneLetras(nombre))
+        {
+            System.out.print("Nombre invalido. Ingresa un nombre: ");
+            nombre = entrada.nextLine();
+        }
+
+        // Telefono
         System.out.print("Telefono: ");
         String telefono = entrada.nextLine();
 
-        System.out.println("---Direccion---");
+        while(!telefonoValido(telefono))
+        {
+            System.out.print("Telefono invalido. Ingresa 10 digitos y comienza con 55 o 56: ");
+            telefono = entrada.nextLine();
+        }
 
+        System.out.println("=====Direccion=====");
+
+        // Calle
         System.out.print("Calle: ");
         String calle = entrada.nextLine();
 
-        System.out.print("Numero: ");
-        short numero = entrada.nextShort();
-        entrada.nextLine();
+        while(!calleValida(calle))
+        {
+            System.out.print("Calle invalida. Debe comenzar con Calle, Avenida o Paseo: ");
+            calle = entrada.nextLine();
+        }
 
+        // Numero exterior
+        System.out.print("Numero exterior: ");
+        int numeroExterior = Utilerias.leerEntero(entrada);
+
+        while(numeroExterior <= 0 || numeroExterior > 999)
+        {
+            System.out.print("Numero exterior invalido. Ingresa un numero de hasta 3 digitos: ");
+            numeroExterior = Utilerias.leerEntero(entrada);
+        }
+
+        // Colonia
         System.out.print("Colonia: ");
         String colonia = entrada.nextLine();
 
+        while(colonia.isBlank() || !contieneLetras(colonia))
+        {
+            System.out.print("Colonia invalida. Ingresa una colonia: ");
+            colonia = entrada.nextLine();
+        }
+
+        // Alcaldia
         System.out.print("Alcaldia: ");
         String alcaldia = entrada.nextLine();
 
+        while(alcaldia.isBlank() || !contieneLetras(alcaldia))
+        {
+            System.out.print("Alcaldia invalida. Ingresa una alcaldia: ");
+            alcaldia = entrada.nextLine();
+        }
+
+        // Estado
         System.out.print("Estado: ");
         String estado = entrada.nextLine();
 
+        while(estado.isBlank() || !contieneLetras(estado))
+        {
+            System.out.print("Estado invalido. Ingresa un estado: ");
+            estado = entrada.nextLine();
+        }
+
+        // Codigo postal
         System.out.print("Codigo postal: ");
         String codigoPostal = entrada.nextLine();
 
+        while(!codigoPostalValido(codigoPostal))
+        {
+            System.out.print("Codigo postal invalido. Ingresa exactamente 5 digitos: ");
+            codigoPostal = entrada.nextLine();
+        }
+
+        // Crear direccion
         Direccion direccion = new Direccion(
                 calle,
-                numero,
+                (short) numeroExterior,
                 colonia,
                 alcaldia,
                 estado,
                 codigoPostal
         );
 
+        // Crear cliente
         Cliente cliente = new Cliente(
                 numCliente,
                 nombre,
@@ -107,15 +155,16 @@ public class OpcionesClientes {
                 direccion
         );
 
+        // Guardar cliente
         clientes.put(numCliente, cliente);
 
         System.out.println("Cliente registrado correctamente.");
-
     }
 
-    public static void consultarDatos(HashMap<Integer, Cliente> clientes, Scanner entrada){
+    public static void consultarDatos(HashMap<Integer, Cliente> clientes, Scanner entrada)
+    {
 
-        System.out.println("---Consultar cliente---");
+        System.out.println("=====Consultar cliente=====");
 
         System.out.print("Numero de cliente: ");
         int numCliente = Utilerias.leerEntero(entrada);
@@ -129,7 +178,65 @@ public class OpcionesClientes {
         }
 
         cliente.imprimirInformacion();
+    }
+    //Métodos para manejar errores (try/except) pero creo no lo hemos visto.
+    public static boolean contieneLetras(String texto)
+    {
+        for(int i = 0; i < texto.length(); i++)
+        {
+            if(Character.isLetter(texto.charAt(i)))
+            {
+                return true;
+            }
+        }
 
+        return false;
     }
 
+    public static boolean telefonoValido(String telefono)
+    {
+        if(telefono.length() != 10){
+            return false;
+        }
+
+        if(!telefono.startsWith("55") && !telefono.startsWith("56"))
+        {
+            return false;
+        }
+
+        for(int i = 0; i < telefono.length(); i++)
+        {
+            if(!Character.isDigit(telefono.charAt(i)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean calleValida(String calle)
+    {
+        String texto = calle.toLowerCase();
+
+        return texto.startsWith("calle ") || texto.startsWith("avenida ") || texto.startsWith("paseo ");
+    }
+
+    public static boolean codigoPostalValido(String codigoPostal)
+    {
+        if(codigoPostal.length() != 5)
+        {
+            return false;
+        }
+
+        for(int i = 0; i < codigoPostal.length(); i++)
+        {
+            if(!Character.isDigit(codigoPostal.charAt(i)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

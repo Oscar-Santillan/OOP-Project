@@ -3,16 +3,16 @@ package veterinaria;
 public class Direccion 
 {
     private String calle;
-    private short numero;
+    private short numeroExterior;
     private String colonia;
     private String alcaldia;
     private String estado;
     private String codigoPostal;
 
-    public Direccion(String calle, short numero, String colonia, String alcaldia, String estado, String codigoPostal) 
+    public Direccion(String calle, short numeroExterior, String colonia, String alcaldia, String estado, String codigoPostal) 
     {
         this.calle = calle;
-        this.numero = numero;
+        this.numeroExterior = numeroExterior;
         this.colonia = colonia;
         this.alcaldia = alcaldia;
         this.estado = estado;
@@ -29,14 +29,14 @@ public class Direccion
         this.calle = calle;
     }
 
-    public short getNumero() 
+    public short getNumeroExterior() 
     {
-        return numero;
+        return numeroExterior;
     }
 
-    public void setNumero(short numero) 
+    public void setNumeroExterior(short numeroExterior) 
     {
-        this.numero = numero;
+        this.numeroExterior = numeroExterior;
     }
 
     public String getColonia() 
@@ -79,9 +79,11 @@ public class Direccion
         this.codigoPostal = codigoPostal;
     }
 
-    public void imprimirDatos() {
+    public void imprimirDatos() 
+    {
+        System.out.println("=====Direccion=====");
         System.out.println("Calle: " + getCalle());
-        System.out.println("Numero: " + getNumero());
+        System.out.println("Numero exterior: " + getNumeroExterior());
         System.out.println("Colonia: " + getColonia());
         System.out.println("Alcaldia: " + getAlcaldia());
         System.out.println("Estado: " + getEstado());

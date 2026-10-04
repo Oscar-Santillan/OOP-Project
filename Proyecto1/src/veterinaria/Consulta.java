@@ -8,6 +8,8 @@ public class Consulta {
     private String motivoConsulta;
     private String diagnostico;
     private String tratamiento;
+    private String nombrePaciente;
+    private String nombreDueño;
     private static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"); 
     
     public Consulta(int folio,String motivoConsulta, String diagnostico, String tratamiento){
@@ -67,10 +69,20 @@ public class Consulta {
         this.tratamiento=trateminto;
     }
     
+    public void setNombrePaciente(String nombrePaciente){
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public void setNombreDueño(String nombreDueño){
+        this.nombreDueño = nombreDueño;
+    }
+
     public void imprimirConsulta(){
         System.out.println("\n=====Datos de Consulta====");
         System.out.println("Fecha y Hora: "+fechayHora);
         System.out.println("Folio: "+folio);
+        System.out.println("Paciente: " + nombrePaciente);
+        System.out.println("Dueño: " + nombreDueño);
         System.out.println("Motivo: "+motivoConsulta);
         System.out.println("Diagnostico: "+diagnostico);
         System.out.println("Tratamiento: "+tratamiento);

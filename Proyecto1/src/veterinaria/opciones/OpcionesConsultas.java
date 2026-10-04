@@ -136,7 +136,7 @@ public class OpcionesConsultas {
                 Mascota mascota = cliente.getMascotas().getMascotaBuscada(nombreMascota);
                 mascota.imprimirHistorial();
             }
-            else{
+            else{   
                 System.out.println("La mascota no se encuentra registrada");   
             }
         }

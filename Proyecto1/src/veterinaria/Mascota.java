@@ -96,7 +96,6 @@ public class Mascota {
         }
     }
 
-    //Modificación que agrego Karol Jared (Borrar este mensaje antes de mandar el trabajo final)
     public void agregarConsulta(Consulta consulta){
         historial.add(consulta);
     }

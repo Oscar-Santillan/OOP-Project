@@ -3,14 +3,14 @@ import veterinaria.menus.Menus;
 import veterinaria.opciones.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.HashSet;
+import veterinaria.estructuras.*;
 import java.util.HashMap;
 
 public class Principal {
     public static void main(String[] args) {
         HashMap<Integer, Cliente> clientes = new HashMap<>();
-        HashSet<Mascota> mascotas = new HashSet<>();
-        ArrayList<Consulta> historicoConsultas = new ArrayList<>();
+        setMascotas mascotas = new setMascotas();
+        listConsultas consultas = new listConsultas();
         Scanner entrada = new Scanner(System.in);
 
         int opcion;

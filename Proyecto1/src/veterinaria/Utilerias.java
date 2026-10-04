@@ -95,33 +95,46 @@ public class Utilerias {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime ahora = LocalDateTime.now();
         return ahora.format(formato);
-
     }
 
-    public static LocalDateTime ingresarFecha(Scanner entrada){
+    public static int elegirEntradaFecha(Scanner scan){
         int opcion;
         do{
-            System.out.println("¿Desea ingresar la fecha de hoy?\n1) Sí\n2) No");
-            opcion = leerEntero(entrada);
-            if(opcion == 1){
-                return LocalDateTime.now();
-            }
-            if(opcion != 2){
-                System.out.println("Ingrese un valor válido");
-            }
-        }while(opcion != 2);
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
-                .withResolverStyle(java.time.format.ResolverStyle.STRICT);
-        while(true){
-            System.out.println("Ingrese la fecha en formato 'dd/MM/yyyy'");
-            String fecha = entrada.nextLine();
-            System.out.println("Ingrese la hora en formato 'HH:mm'");
-            String hora = entrada.nextLine();
-            try{
-                return LocalDateTime.parse(fecha + " " + hora, formato);
-            }catch(java.time.format.DateTimeParseException ex){
-                System.out.println("Fecha u hora inválida. Intente nuevamente.");
-            }
+        System.out.println("Desea ingresar la fecha de hoy?");
+        System.out.println("1)Si\n2)No");
+        opcion=scan.nextInt();
+        scan.nextLine();
+
+        if(opcion==1){
+            return opcion;
         }
+        if(opcion==2){
+            return opcion;
+        }
+        else{
+            System.out.println("Ingrese un valor valido");
+        }}
+        while(opcion!=1 && opcion!=2);
+        return 0;
     }
+
+
+    public static LocalDateTime ingresarFechayHora(Scanner scan){
+        String fecha,hora;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        System.out.println("Ingrese la fecha con el formato 'dd/MM/yyyy': ");
+        fecha= scan.nextLine();
+
+        System.out.println("Ingrese la hora con el formato 'HH:mm'");
+        hora= scan.nextLine();
+
+        LocalDateTime fechayHora= LocalDateTime.parse(fecha+" "+hora,format);
+
+        return fechayHora;
+
+    }
+
+
+
+
 }

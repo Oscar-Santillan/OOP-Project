@@ -15,13 +15,9 @@ public class OpcionesMascotas {
             Menus.mostrarMenuMascotas();
             opcion = Utilerias.leerEntero(entrada);
             switch (opcion){
-                //Registrar mascota
                 case 1 -> registrarMascota(mascotas, clientes, entrada);
-                //Modificar mascota
                 case 2 -> modificarMascota(mascotas, clientes, entrada);
-                //Eliminar mascota
                 case 3 -> eliminarMascota(mascotas, entrada);
-                //Regresar al menú principal
                 case 4 -> {
                     System.out.println("Regresando...");
                 }
@@ -95,7 +91,6 @@ public class OpcionesMascotas {
             opcion = Utilerias.leerEntero(entrada);
 
             switch (opcion){
-                //Edad
                 case 1 -> {
                     System.out.print("Ingresa el ID de la mascota: ");
                     int id = Utilerias.leerEntero(entrada);
@@ -159,7 +154,6 @@ public class OpcionesMascotas {
                     System.out.println("Dueño modificado correctamente.");
                 }
 
-                //Raza
                 case 3 -> {
                     System.out.print("Ingresa el ID de la mascota: ");
                     int id = Utilerias.leerEntero(entrada);
@@ -181,7 +175,6 @@ public class OpcionesMascotas {
                     mascota.setRaza(raza);
                     System.out.println("Raza modificada correctamente.");
                 }
-                //Regresar
                 case 4 -> {
                     System.out.println("Regresando...");
                 }

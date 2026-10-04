@@ -18,19 +18,15 @@ public class Principal {
             Menus.mostrarMenuPrincipal();
             opcion = Utilerias.leerEntero(entrada);
             switch(opcion){
-                //OpcionesMascotas
                 case 1 ->{
                     OpcionesMascotas.ejecutar(mascotas, clientes, entrada);
                 }
-                //Clientes
                 case 2 ->{
                     OpcionesClientes.ejecutar(clientes, entrada);
                 }
-                //Consultas
                 case 3 ->{
                     OpcionesConsultas.ejecutar(clientes, consultas, entrada);
                 }
-                //Salir
                 case 4 ->{
                     System.out.println("Saliendo...");
                 }

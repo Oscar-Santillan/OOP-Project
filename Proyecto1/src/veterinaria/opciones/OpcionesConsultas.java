@@ -16,13 +16,9 @@ public class OpcionesConsultas {
             opcion = Utilerias.leerEntero(entrada);
 
             switch (opcion){
-                //Registrar nueva consulta
                 case 1 -> {registrarConsulta(clientes, consultasGeneral, entrada);}
-                //Consultar el historial de consultas de la mascota
                 case 2 -> {consultarHistorial(clientes, entrada);}
-                //Consultar el histórico de consultas de la veterinaria
                 case 3 -> {consultarHistorico(consultasGeneral);}
-                //Regresar al menú principal
                 case 4 -> {
                     System.out.println("Regresando...");
                 }
@@ -80,11 +76,21 @@ public class OpcionesConsultas {
                     tratamiento=entrada.nextLine();
                 }
 
-                java.time.LocalDateTime fechaHora = Utilerias.ingresarFecha(entrada);
-                Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
-                consulta.setFechaYHora(fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-                cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
-                consultas.addConsulta(consulta);
+                int opcion = Utilerias.elegirEntradaFecha(entrada);
+                if(opcion == 1){
+                    Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
+                    consulta.setNombrePaciente(nombreMascota);
+                    consulta.setNombreDueño(cliente.getNombre());
+                    cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
+                    consultas.addConsulta(consulta);
+                }else{
+                    java.time.LocalDateTime fechayHora = Utilerias.ingresarFechayHora(entrada);
+                    Consulta consulta = new Consulta(folio, fechayHora, motivoConsulta, diagnostico, tratamiento);
+                    consulta.setNombrePaciente(nombreMascota);
+                    consulta.setNombreDueño(cliente.getNombre());
+                    cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
+                    consultas.addConsulta(consulta);
+                }
 
             }
             else{
@@ -134,7 +140,7 @@ public class OpcionesConsultas {
     }
 
     public static void consultarHistorico(listConsultas consultas){
-        System.out.println("=====Historico de Consultas=====");
+        System.out.println("=====Histórico de Consultas=====");
         consultas.imprimirConsultas();
     }
 }

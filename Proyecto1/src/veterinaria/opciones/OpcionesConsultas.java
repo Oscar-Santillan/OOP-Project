@@ -76,13 +76,21 @@ public class OpcionesConsultas {
                     tratamiento=entrada.nextLine();
                 }
 
-                java.time.LocalDateTime fechaHora = Utilerias.ingresarFecha(entrada);
-                Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
-                consulta.setNombrePaciente(nombreMascota);
-                consulta.setNombreDueño(cliente.getNombre());
-                consulta.setFechaYHora(fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-                cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
-                consultas.addConsulta(consulta);
+                int opcion = Utilerias.elegirEntradaFecha(entrada);
+                if(opcion == 1){
+                    Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
+                    consulta.setNombrePaciente(nombreMascota);
+                    consulta.setNombreDueño(cliente.getNombre());
+                    cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
+                    consultas.addConsulta(consulta);
+                }else{
+                    java.time.LocalDateTime fechayHora = Utilerias.ingresarFechayHora(entrada);
+                    Consulta consulta = new Consulta(folio, fechayHora, motivoConsulta, diagnostico, tratamiento);
+                    consulta.setNombrePaciente(nombreMascota);
+                    consulta.setNombreDueño(cliente.getNombre());
+                    cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
+                    consultas.addConsulta(consulta);
+                }
 
             }
             else{

@@ -20,12 +20,12 @@ public class Consulta {
         this.fechayHora= LocalDateTime.parse(Utilerias.horaActualAFormato(),format);
     }
     
-    public Consulta(int folio, String fecha, String hora,String motivoConsulta, String diagnostico, String tratamiento){
+    public Consulta(int folio, LocalDateTime fechayHora,String motivoConsulta, String diagnostico, String tratamiento){
         this.folio=folio;
         this.motivoConsulta=motivoConsulta;
         this.tratamiento=tratamiento;
         this.diagnostico=diagnostico;
-        this.fechayHora= LocalDateTime.parse(fecha +" "+hora, format);
+        this.fechayHora= fechayHora;
 
     }
 

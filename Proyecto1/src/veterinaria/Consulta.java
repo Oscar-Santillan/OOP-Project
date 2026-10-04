@@ -79,7 +79,7 @@ public class Consulta {
 
     public void imprimirConsulta(){
         System.out.println("\n=====Datos de Consulta====");
-        System.out.println("Fecha y Hora: "+fechayHora);
+        System.out.println("Fecha y Hora: "+fechayHora.toString());
         System.out.println("Folio: "+folio);
         System.out.println("Paciente: " + nombrePaciente);
         System.out.println("Dueño: " + nombreDueño);

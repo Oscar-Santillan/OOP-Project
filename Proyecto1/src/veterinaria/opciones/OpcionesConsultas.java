@@ -3,8 +3,11 @@ import veterinaria.menus.Menus;
 import veterinaria.Mascota;
 import veterinaria.Cliente;
 import veterinaria.Utilerias;
+import veterinaria.estructuras.listConsultas;
+
 import java.util.Scanner;
 import java.util.HashSet;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class OpcionesConsultas {
@@ -34,21 +37,29 @@ public class OpcionesConsultas {
 
     }
 
-    public static void registrarConsulta(HashMap<Integer, Cliente> clientes){
+    public static void registrarConsulta(HashMap<Integer, Cliente> clientes,listConsultas consultas){
         /*Scanner entrada = new Scanner(System.in);
-        int idCliente;
-        String nombreMascota;
+        int idCliente,folio;
+        LocalDateTime fechayHora;
+        String nombreMascota,motivoConsulta,diagnostico,tratamiento;
 
         System.out.println("=====Registrar Consultas=====");
         System.out.println("Ingrese el ID de su cliente:");
         idCliente=entrada.nextInt();
         entrada.nextLine();
         
+        
         if(clientes.containsKey(idCliente)){
+            Cliente cliente = clientes.get(idCliente);
             System.out.println("Ingrese el nombre de su mascota:");
             nombreMascota=entrada.nextLine();
-            if(clientes.get(idCliente).getMascotas().){
-                
+            if(cliente.getMascotas().buscarMascota(nombreMascota)){
+
+                System.out.println("Ingrese el folio de su Consulta:");
+                folio = consultas.sizeConsulta()+1;
+                System.out.println("");
+
+
             }
     
 
@@ -59,8 +70,7 @@ public class OpcionesConsultas {
             System.out.print("Verifique que está bien escrito,");
             System.out.println(" de lo contrario, registre al Cliente y su respectiva Mascota");
         }
-    */
-
+*/
     }
 
     public static void consultarHistorial(){

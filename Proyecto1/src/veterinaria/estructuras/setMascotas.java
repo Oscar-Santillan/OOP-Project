@@ -18,8 +18,11 @@ public class setMascotas {
         mascotas.add(mascota);
     }
 
-    public void removeMascota(Mascota mascota){
-        mascotas.remove(mascota);
+    public void removeMascota(String nombreMascota){
+        for(Mascota mascota: mascotas){
+        if(mascota.getNombre().equals(nombreMascota)){
+            mascotas.remove(mascota); }
+        }
     }
 
     public boolean buscarMascota(String nombreMascota){

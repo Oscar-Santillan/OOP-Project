@@ -1,14 +1,16 @@
 package veterinaria.opciones;
 import veterinaria.menus.Menus;
+import veterinaria.Mascota;
+import veterinaria.Cliente;
 import veterinaria.Utilerias;
 import java.util.Scanner;
-
+import java.util.HashSet;
+import java.util.HashMap;
 
 public class OpcionesConsultas {
     public static void ejecutar(){
         Scanner entrada = new Scanner(System.in);
         int opcion;
-
         do{
             Menus.mostrarMenuConsultas();
             opcion = Utilerias.leerEntero(entrada);
@@ -32,7 +34,32 @@ public class OpcionesConsultas {
 
     }
 
-    public static void registrarConsulta(){
+    public static void registrarConsulta(HashMap<Integer, Cliente> clientes){
+        /*Scanner entrada = new Scanner(System.in);
+        int idCliente;
+        String nombreMascota;
+
+        System.out.println("=====Registrar Consultas=====");
+        System.out.println("Ingrese el ID de su cliente:");
+        idCliente=entrada.nextInt();
+        entrada.nextLine();
+        
+        if(clientes.containsKey(idCliente)){
+            System.out.println("Ingrese el nombre de su mascota:");
+            nombreMascota=entrada.nextLine();
+            if(clientes.get(idCliente).getMascotas().){
+                
+            }
+    
+
+
+        }
+        else{
+            System.out.println("El ID ingresado no existe");
+            System.out.print("Verifique que está bien escrito,");
+            System.out.println(" de lo contrario, registre al Cliente y su respectiva Mascota");
+        }
+    */
 
     }
 

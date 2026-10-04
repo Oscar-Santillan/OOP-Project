@@ -1,5 +1,6 @@
 package veterinaria;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Utilerias {
@@ -17,4 +18,13 @@ public class Utilerias {
 
         return numero;
     }
+
+    public static String horaActualAFormato(){
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime ahora = LocalDateTime.now();
+        return ahora.format(formato);
+
+    }
+
+    
 }

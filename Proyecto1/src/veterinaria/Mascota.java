@@ -89,4 +89,16 @@ public class Mascota {
         System.out.println();
     }
 
+    public void imprimirHistorial(){
+        System.out.println("=====Historial de "+ nombre +" con ID: "+ id+"======");
+        for(Consulta consulta: historial){
+            consulta.imprimirConsulta();
+        }
+    }
+
+    //Modificación que agrego Karol Jared (Borrar este mensaje antes de mandar el trabajo final)
+    public void agregarConsulta(Consulta consulta){
+        historial.add(consulta);
+    }
+
 }

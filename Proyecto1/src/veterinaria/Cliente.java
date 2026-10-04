@@ -1,7 +1,6 @@
 package veterinaria;
 
-import java.util.HashSet;
-import java.util.Set;
+import veterinaria.estructuras.setMascotas;
 
 public class Cliente 
 {
@@ -9,7 +8,7 @@ public class Cliente
     private String nombre;
     private String telefono;
     private Direccion direccion;
-    private Set<Mascota> mascotas;
+    private setMascotas mascotas;
 
     public Cliente(int numCliente, String nombre, String telefono, Direccion direccion) 
     {
@@ -17,7 +16,7 @@ public class Cliente
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.mascotas = new HashSet<>();
+        this.mascotas = new setMascotas();
     }
 
     public int getNumCliente() 
@@ -60,19 +59,19 @@ public class Cliente
         this.direccion = direccion;
     }
 
-    public Set<Mascota> getMascotas() 
+    public setMascotas getMascotas() 
     {
         return mascotas;
     }
 
     public void agregarMascota(Mascota mascota) 
     {
-        mascotas.add(mascota);
+        mascotas.addMascota(mascota);
     }
 
-    public void eliminarMascota(Mascota mascota) 
+    public void eliminarMascota(String mascota) 
     {
-        mascotas.remove(mascota);
+        mascotas.removeMascota(mascota);
     }
 
     public void imprimirInformacion() 
@@ -94,10 +93,7 @@ public class Cliente
         } 
         else 
             {
-            for (Mascota mascota : mascotas) 
-            {
-                System.out.println("ID: " + mascota.getId() + " | Nombre: " + mascota.getNombre());
-            }
+            mascotas.imprimirMascotas();
         }
 
         System.out.println();

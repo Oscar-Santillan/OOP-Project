@@ -2,15 +2,14 @@ package veterinaria;
 import veterinaria.menus.Menus;
 import veterinaria.opciones.*;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.HashSet;
+import veterinaria.estructuras.*;
 import java.util.HashMap;
 
 public class Principal {
     public static void main(String[] args) {
         HashMap<Integer, Cliente> clientes = new HashMap<>();
-        HashSet<Mascota> mascotas = new HashSet<>();
-        ArrayList<Consulta> historicoConsultas = new ArrayList<>();
+        setMascotas mascotas = new setMascotas();
+        listConsultas consultas = new listConsultas();
         Scanner entrada = new Scanner(System.in);
 
         int opcion;
@@ -21,15 +20,15 @@ public class Principal {
             switch(opcion){
                 //OpcionesMascotas
                 case 1 ->{
-                    OpcionesMascotas.ejecutar(mascotas);
+                    OpcionesMascotas.ejecutar(mascotas, clientes, entrada);
                 }
                 //Clientes
                 case 2 ->{
-                    OpcionesClientes.ejecutar(clientes);
+                    OpcionesClientes.ejecutar(clientes, entrada);
                 }
                 //Consultas
                 case 3 ->{
-                    OpcionesConsultas.ejecutar();
+                    OpcionesConsultas.ejecutar(clientes, consultas, entrada);
                 }
                 //Salir
                 case 4 ->{

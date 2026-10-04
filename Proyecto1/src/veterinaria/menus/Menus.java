@@ -16,6 +16,7 @@ public class Menus {
         System.out.println("1. Registrar mascota.");
         System.out.println("2. Modificar los datos de una mascota");
         System.out.println("3. Eliminar Mascota.");
+        System.out.println("4. Regresar.");
         System.out.print("Ingresa una opción: ");
         System.out.println();
     }

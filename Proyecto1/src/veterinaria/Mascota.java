@@ -19,7 +19,7 @@ public class Mascota {
         this.edad = edad;
         this.especie = especie;
         this.raza = raza;
-        List<Consulta> consultas = new ArrayList<>();
+        this.historial = new ArrayList<>();
     }
 
     public void setNombre(String nombre) {
@@ -84,7 +84,7 @@ public class Mascota {
         System.out.println("ID: " + getId());
         System.out.println("Dueño: " + getDueño().getNombre());
         System.out.println("Edad: " + getEdad());
-        System.out.println("Especie: ");
+        System.out.println("Especie: " + getEspecie());
         System.out.println("Raza: " + getRaza());
         System.out.println();
     }
@@ -96,7 +96,6 @@ public class Mascota {
         }
     }
 
-    //Modificación que agrego Karol Jared (Borrar este mensaje antes de mandar el trabajo final)
     public void agregarConsulta(Consulta consulta){
         historial.add(consulta);
     }

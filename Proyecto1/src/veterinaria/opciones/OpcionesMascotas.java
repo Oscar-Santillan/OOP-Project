@@ -3,11 +3,11 @@ import veterinaria.Mascota;
 import veterinaria.menus.Menus;
 import veterinaria.Utilerias;
 
-import java.util.HashSet;
+import veterinaria.estructuras.*;
 import java.util.Scanner;
 
 public class OpcionesMascotas {
-    public static void ejecutar(HashSet<Mascota> mascotas){
+    public static void ejecutar(setMascotas mascotas){
         Scanner entrada = new Scanner(System.in);
         int opcion;
         do{
@@ -33,15 +33,15 @@ public class OpcionesMascotas {
 
     }
 
-    public static void registrarMascota(HashSet<Mascota> mascotas){
+    public static void registrarMascota(setMascotas mascotas){
 
     }
 
-    public static void modificarMascota(HashSet<Mascota> mascotas){
+    public static void modificarMascota(setMascotas mascotas){
 
     }
 
-    public static void eliminarMascota(HashSet<Mascota> mascotas){
+    public static void eliminarMascota(setMascotas mascotas){
 
     }
 }

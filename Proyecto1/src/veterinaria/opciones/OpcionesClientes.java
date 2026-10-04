@@ -45,7 +45,7 @@ public class OpcionesClientes
         }while(opcion != 3);
     }
 
-    public static void registrarCliente(HashMap<Integer, Cliente> clientes, Scanner entrada)
+    public static Cliente registrarCliente(HashMap<Integer, Cliente> clientes, Scanner entrada)
     {
 
         System.out.println("=====Registrar cliente=====");
@@ -159,6 +159,7 @@ public class OpcionesClientes
         clientes.put(numCliente, cliente);
 
         System.out.println("Cliente registrado correctamente.");
+        return cliente;
     }
 
     public static void consultarDatos(HashMap<Integer, Cliente> clientes, Scanner entrada)
@@ -178,6 +179,26 @@ public class OpcionesClientes
         }
 
         cliente.imprimirInformacion();
+    }
+
+    public static Cliente asignarDueño(int numCliente, HashMap<Integer, Cliente> clientes, Scanner entrada){
+        Cliente cliente = clientes.get(numCliente);
+
+        if (cliente == null){
+            System.out.println("No existe cliente con ese número");
+            System.out.println("¿Deseas registrar un nuevo cliente? (s/n)");
+            String opcion = entrada.nextLine();
+
+            if(opcion.equals("s")){
+                cliente = OpcionesClientes.registrarCliente(clientes,entrada);
+                return cliente;
+            }else{
+                return null;
+            }
+
+        }
+
+        return cliente;
     }
     //Métodos para manejar errores (try/except) pero creo no lo hemos visto.
     public static boolean contieneLetras(String texto)
@@ -239,4 +260,6 @@ public class OpcionesClientes
 
         return true;
     }
+
+
 }

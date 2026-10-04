@@ -19,6 +19,19 @@ public class Utilerias {
         return numero;
     }
 
+    public static short leerShort(Scanner entrada){
+
+        while(!entrada.hasNextShort()){
+            System.out.print("Entrada inválida. Ingresa un número: ");
+            entrada.nextLine();
+        }
+
+        short numero = entrada.nextShort();
+        entrada.nextLine();
+
+        return numero;
+    }
+
     public static String horaActualAFormato(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime ahora = LocalDateTime.now();

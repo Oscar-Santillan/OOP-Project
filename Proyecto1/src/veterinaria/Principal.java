@@ -10,7 +10,7 @@ public class Principal {
     public static void main(String[] args) {
         HashMap<Integer, Cliente> clientes = new HashMap<>();
         setMascotas mascotas = new setMascotas();
-        ArrayList<Consulta> historicoConsultas = new ArrayList<>();
+        listConsultas consultas = new listConsultas();
         Scanner entrada = new Scanner(System.in);
 
         int opcion;

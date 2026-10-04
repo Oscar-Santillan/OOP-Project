@@ -25,6 +25,11 @@ public class listConsultas {
         return consultas.size();
     }
 
+    public void imprimirConsultas(){
+        for(Consulta consulta: consultas){
+            consulta.imprimirConsulta();
+        }
+    }
 
 
 }

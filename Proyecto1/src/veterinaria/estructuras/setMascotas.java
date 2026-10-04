@@ -55,6 +55,14 @@ public class setMascotas {
         }
     }
 
+    public Mascota getMascotaBuscada(String nombreMascota){
+     for(Mascota mascota: mascotas){
+            if(mascota.getNombre().equals(nombreMascota)){
+                return mascota;
+            }
+        }  
+    return null; 
+    }
 
 
 

@@ -19,7 +19,7 @@ public class Mascota {
         this.edad = edad;
         this.especie = especie;
         this.raza = raza;
-        List<Consulta> consultas = new ArrayList<>();
+        historial = new ArrayList<>();
     }
 
     public void setNombre(String nombre) {

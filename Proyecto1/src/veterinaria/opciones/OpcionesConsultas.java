@@ -42,6 +42,7 @@ public class OpcionesConsultas {
         Scanner entrada = new Scanner(System.in);
         int idCliente,folio,opcion;
         String nombreMascota,motivoConsulta,diagnostico,tratamiento,fecha=null,hora=null;
+        LocalDateTime fechayHora;
 
         System.out.println("=====Registrar Consultas=====");
         System.out.println("Ingrese el ID del cliente:");
@@ -86,18 +87,18 @@ public class OpcionesConsultas {
                     tratamiento=entrada.nextLine();
                 }
 
-                opcion=Utilerias.ingresarFecha(fecha, hora);
+                opcion=Utilerias.elegirEntradaFecha();
                 if(opcion==1){
                     Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
                     clientes.get(idCliente).getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
                     consultas.addConsulta(consulta);
                 }
                 else{
-                    Utilerias.ingresarFecha(fecha, hora);
-                    Consulta consulta = new Consulta(folio, fecha, hora, motivoConsulta, diagnostico, tratamiento);
+                    fechayHora = Utilerias.ingresarFechayHora();
+                    Consulta consulta = new Consulta(folio, fechayHora, motivoConsulta, diagnostico, tratamiento);
                     clientes.get(idCliente).getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
                     consultas.addConsulta(consulta);
-                }
+                }   
 
             }
             else{

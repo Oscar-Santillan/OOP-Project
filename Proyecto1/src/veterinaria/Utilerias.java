@@ -1,4 +1,5 @@
 package veterinaria;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -82,10 +83,9 @@ public class Utilerias {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime ahora = LocalDateTime.now();
         return ahora.format(formato);
-
     }
 
-    public static int ingresarFecha(String fecha, String hora){
+    public static int elegirEntradaFecha(){
         Scanner scan= new Scanner(System.in);
         int opcion;
         do{
@@ -98,19 +98,36 @@ public class Utilerias {
             return opcion; 
         }
         if(opcion==0){
-        System.out.println("Ingrese la fecha en formato 'dd-MM-yyyy'");
-        fecha=scan.nextLine();
-        System.out.println("Ingrese la hora en formato 'HH:mm'");
-        hora=scan.nextLine();
-        return opcion;
+            return opcion;
         } 
         else{
             System.out.println("Ingrese un valor valido");
         }}
         while(opcion!=1 && opcion!=0);
         return 0;
+    }
 
-    }  
+    /* 
+    public static int ingresarFecha(String fecha, String hora){
+        
+
+    }  */
+    public static LocalDateTime ingresarFechayHora(){
+        Scanner scan= new Scanner(System.in);
+        String fecha,hora;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Ingrese la fecha con el formato 'dd-MM-yyyy'': ");
+        fecha= scan.nextLine();
+        
+        System.out.println("Ingrese la hora con el formato 'HH:mm'");
+        hora= scan.nextLine();
+
+        LocalDateTime fechayHora= LocalDateTime.parse(fecha+" "+hora,format);
+        
+        return fechayHora;
+
+    }
+
 
    /* public static boolean fechaValida(String fecha){
         if();

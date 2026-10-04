@@ -29,7 +29,7 @@ public class Principal {
                 }
                 //Consultas
                 case 3 ->{
-                    OpcionesConsultas.ejecutar();
+                    OpcionesConsultas.ejecutar(clientes, consultas);
                 }
                 //Salir
                 case 4 ->{

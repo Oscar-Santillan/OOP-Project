@@ -50,7 +50,7 @@ public class OpcionesClientes
         System.out.println("=====Registrar cliente=====");
 
         // El numero de cliente se asigna automaticamente
-        int numCliente = clientes.keySet().stream().mapToInt(Integer::intValue).max().orElse(0) + 1;
+        int numCliente = clientes.size() + 1;
 
         System.out.println("Numero de cliente asignado: " + numCliente);
 

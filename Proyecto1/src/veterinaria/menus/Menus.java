@@ -23,9 +23,9 @@ public class Menus {
 
     public static void menuEditarMascota(){
         System.out.println("=====Modificar Datos de la mascota=====");
-        System.out.println("1. Nombre.");
-        System.out.println("2. ID.");
-        System.out.println("3. Edad.");
+        System.out.println("1. Edad.");
+        System.out.println("2. Dueño.");
+        System.out.println("3. Raza.");
         System.out.println("4. Regresar.");
         System.out.print("Ingresa una opción: ");
         System.out.println();

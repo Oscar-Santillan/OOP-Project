@@ -18,8 +18,8 @@ public class setMascotas {
         mascotas.add(mascota);
     }
 
-    public void removeMascota(String nombreMascota){
-        mascotas.removeIf(mascota -> mascota.getNombre().equals(nombreMascota));
+    public void removeMascota(Mascota mascota) {
+        mascotas.remove(mascota);
     }
 
     public boolean buscarMascota(String nombreMascota){
@@ -29,6 +29,16 @@ public class setMascotas {
             }
         }
         return false;
+    }
+
+    public Mascota buscarMascotaId(int id){
+        for(Mascota mascota: mascotas){
+            if(mascota.getId() == id){
+                return mascota;
+            }
+        }
+
+        return null;
     }
 
     public void registrarConsultaAMascota(String nombreMascota, Consulta newConsulta){

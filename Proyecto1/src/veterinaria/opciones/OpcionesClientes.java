@@ -11,9 +11,8 @@ import veterinaria.menus.Menus;
 public class OpcionesClientes 
 {
 
-    public static void ejecutar(HashMap<Integer, Cliente> clientes)
+    public static void ejecutar(HashMap<Integer, Cliente> clientes, Scanner entrada)
     {
-        Scanner entrada = new Scanner(System.in);
         int opcion;
 
         do
@@ -45,7 +44,7 @@ public class OpcionesClientes
         }while(opcion != 3);
     }
 
-    public static void registrarCliente(HashMap<Integer, Cliente> clientes, Scanner entrada)
+    public static Cliente registrarCliente(HashMap<Integer, Cliente> clientes, Scanner entrada)
     {
 
         System.out.println("=====Registrar cliente=====");
@@ -159,6 +158,7 @@ public class OpcionesClientes
         clientes.put(numCliente, cliente);
 
         System.out.println("Cliente registrado correctamente.");
+        return cliente;
     }
 
     public static void consultarDatos(HashMap<Integer, Cliente> clientes, Scanner entrada)
@@ -178,5 +178,19 @@ public class OpcionesClientes
         }
 
         cliente.imprimirInformacion();
+    }
+
+    public static Cliente asignarDueño(int numCliente, HashMap<Integer, Cliente> clientes, Scanner entrada){
+        Cliente cliente = clientes.get(numCliente);
+        if (cliente == null){
+            System.out.println("No existe cliente con ese número");
+            System.out.println("¿Deseas registrar un nuevo cliente? (s/n)");
+            String opcion = entrada.nextLine().trim();
+            if(opcion.equalsIgnoreCase("s")){
+                return registrarCliente(clientes, entrada);
+            }
+            return null;
+        }
+        return cliente;
     }
 }

@@ -5,15 +5,11 @@ import veterinaria.Cliente;
 import veterinaria.Utilerias;
 import veterinaria.Consulta;
 import veterinaria.estructuras.listConsultas;
-import veterinaria.estructuras.setMascotas;
 import java.util.Scanner;
-import java.util.HashSet;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class OpcionesConsultas {
-    public static void ejecutar(HashMap<Integer,Cliente> clientes,listConsultas consultasGeneral){
-        Scanner entrada = new Scanner(System.in);
+    public static void ejecutar(HashMap<Integer,Cliente> clientes,listConsultas consultasGeneral, Scanner entrada){
         int opcion;
         do{
             Menus.mostrarMenuConsultas();
@@ -21,9 +17,9 @@ public class OpcionesConsultas {
 
             switch (opcion){
                 //Registrar nueva consulta
-                case 1 -> {registrarConsulta(clientes, consultasGeneral);}
+                case 1 -> {registrarConsulta(clientes, consultasGeneral, entrada);}
                 //Consultar el historial de consultas de la mascota
-                case 2 -> {consultarHistorial(clientes);}
+                case 2 -> {consultarHistorial(clientes, entrada);}
                 //Consultar el histórico de consultas de la veterinaria
                 case 3 -> {consultarHistorico(consultasGeneral);}
                 //Regresar al menú principal
@@ -38,15 +34,13 @@ public class OpcionesConsultas {
 
     }
 
-    public static void registrarConsulta(HashMap<Integer, Cliente> clientes,listConsultas consultas){
-        Scanner entrada = new Scanner(System.in);
-        int idCliente,folio,opcion;
-        String nombreMascota,motivoConsulta,diagnostico,tratamiento,fecha=null,hora=null;
+    public static void registrarConsulta(HashMap<Integer, Cliente> clientes,listConsultas consultas, Scanner entrada){
+        int idCliente,folio;
+        String nombreMascota,motivoConsulta,diagnostico,tratamiento;
 
         System.out.println("=====Registrar Consultas=====");
         System.out.println("Ingrese el ID del cliente:");
-        idCliente=entrada.nextInt();
-        entrada.nextLine();
+        idCliente=Utilerias.leerEntero(entrada);
         
         
         if(clientes.containsKey(idCliente)){
@@ -86,18 +80,11 @@ public class OpcionesConsultas {
                     tratamiento=entrada.nextLine();
                 }
 
-                opcion=Utilerias.ingresarFecha(fecha, hora);
-                if(opcion==1){
-                    Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
-                    clientes.get(idCliente).getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
-                    consultas.addConsulta(consulta);
-                }
-                else{
-                    Utilerias.ingresarFecha(fecha, hora);
-                    Consulta consulta = new Consulta(folio, fecha, hora, motivoConsulta, diagnostico, tratamiento);
-                    clientes.get(idCliente).getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
-                    consultas.addConsulta(consulta);
-                }
+                java.time.LocalDateTime fechaHora = Utilerias.ingresarFecha(entrada);
+                Consulta consulta = new Consulta(folio, motivoConsulta, diagnostico, tratamiento);
+                consulta.setFechaYHora(fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+                cliente.getMascotas().registrarConsultaAMascota(nombreMascota, consulta);
+                consultas.addConsulta(consulta);
 
             }
             else{
@@ -115,8 +102,7 @@ public class OpcionesConsultas {
 
     }
 
-    public static void consultarHistorial(HashMap<Integer, Cliente> clientes){
-        Scanner scan=new Scanner(System.in);
+    public static void consultarHistorial(HashMap<Integer, Cliente> clientes, Scanner scan){
         System.out.println("=====Consultar Historial Individual=====");
         System.out.println("Ingrese el ID de su cliente: ");
         int idCliente=Utilerias.leerEntero(scan);        

@@ -78,6 +78,19 @@ public class Utilerias {
         return true;
     }
 
+    public static short leerShort(Scanner entrada){
+
+        while(!entrada.hasNextShort()){
+            System.out.print("Entrada inválida. Ingresa un número: ");
+            entrada.nextLine();
+        }
+
+        short numero = entrada.nextShort();
+        entrada.nextLine();
+
+        return numero;
+    }
+
     public static String horaActualAFormato(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime ahora = LocalDateTime.now();
@@ -85,36 +98,30 @@ public class Utilerias {
 
     }
 
-    public static int ingresarFecha(String fecha, String hora){
-        Scanner scan= new Scanner(System.in);
+    public static LocalDateTime ingresarFecha(Scanner entrada){
         int opcion;
         do{
-        System.out.println("Desea ingresar la fecha de hoy?");
-        System.out.println("1)Si\n2)No");
-        opcion=scan.nextInt();
-        scan.nextLine();
-
-        if(opcion==1){
-            return opcion; 
+            System.out.println("¿Desea ingresar la fecha de hoy?\n1) Sí\n2) No");
+            opcion = leerEntero(entrada);
+            if(opcion == 1){
+                return LocalDateTime.now();
+            }
+            if(opcion != 2){
+                System.out.println("Ingrese un valor válido");
+            }
+        }while(opcion != 2);
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                .withResolverStyle(java.time.format.ResolverStyle.STRICT);
+        while(true){
+            System.out.println("Ingrese la fecha en formato 'dd/MM/yyyy'");
+            String fecha = entrada.nextLine();
+            System.out.println("Ingrese la hora en formato 'HH:mm'");
+            String hora = entrada.nextLine();
+            try{
+                return LocalDateTime.parse(fecha + " " + hora, formato);
+            }catch(java.time.format.DateTimeParseException ex){
+                System.out.println("Fecha u hora inválida. Intente nuevamente.");
+            }
         }
-        if(opcion==0){
-        System.out.println("Ingrese la fecha en formato 'dd-MM-yyyy'");
-        fecha=scan.nextLine();
-        System.out.println("Ingrese la hora en formato 'HH:mm'");
-        hora=scan.nextLine();
-        return opcion;
-        } 
-        else{
-            System.out.println("Ingrese un valor valido");
-        }}
-        while(opcion!=1 && opcion!=0);
-        return 0;
-
-    }  
-
-   /* public static boolean fechaValida(String fecha){
-        if();
-
-    } */
-
+    }
 }

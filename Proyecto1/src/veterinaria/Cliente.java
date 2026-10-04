@@ -69,7 +69,7 @@ public class Cliente
         mascotas.addMascota(mascota);
     }
 
-    public void eliminarMascota(String mascota) 
+    public void eliminarMascota(Mascota mascota)
     {
         mascotas.removeMascota(mascota);
     }
